@@ -29,4 +29,16 @@ const box = new THREE.Mesh(geometry, material);
 
 scene.add(box);
 
-renderer.render(scene, camera);
+function animate() {
+  box.rotation.y += 0.02;
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+animate();
+
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
